@@ -6,19 +6,19 @@ class UsersController < ApplicationController
     before_action :ensure_logged_in, except: [:show, :index]
     before_action :ensure_user_owns_restaurant, only: [:edit, :update, :destroy]
 
-    def load_restaurant
-        @restaurant = Restaurant.find(params[:id])
-    end
-
-    def load_menu_item
-        @menu_item = MenuItem.find(params[:id])
-    end
-
-    def load_reservation
-        @reservation = Reservation.find(params[:id])
-    end
-
-    def index
+    # def load_restaurant
+    #     @restaurant = Restaurant.find_by(params[:id])
+    # end
+    #
+    # def load_menu_item
+    #     @menu_item = MenuItem.find_by(params[:id])
+    # end
+    #
+    # def load_reservation
+    #     @reservation = Reservation.find_by(params[:id])
+    # end
+    #
+    # def index
 
     end
 
@@ -37,6 +37,8 @@ class UsersController < ApplicationController
         @user.email = params[:user][:email]
         @user.password = params[:user][:password]
         @user.password_confirmation = params[:user][:password_confirmation]
+        #@user.loyalty_points = params[:user][:loyalty_points]
+
         if
             @user.save
             redirect_to restaurants_path

@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
     def new
 
     end
- 
+
     def create
         @reservation = Reservation.new
         @reservation.user_id = params[:reservation][:user_id]
@@ -23,9 +23,10 @@ class ReservationsController < ApplicationController
         @restaurant = Restaurant.find(params[:restaurant_id])
         @reservation.restaurant =  @restaurant.id
         @reservations = @restaurant.reservations
-    
+
+
         # @reservation.user_id = current_user.id
-    
+
         if @reservation.save
           redirect_to restaurant_path(@restaurant)
           flash[:notice] = "Reservation made!"
@@ -49,7 +50,7 @@ class ReservationsController < ApplicationController
         @reservation.time = params[:reservation][:time]
         @reservation.party_size = params[:reservation][:party_size]
         @reservation.product = @restaurant
-    
+
         if @reservation.save
           redirect_to restaurant_path(@restaurant)
           flash[:notice] = "Reservation updated."
@@ -158,4 +159,3 @@ end
 #       render restaurant_path
 #     end
 # end
-
