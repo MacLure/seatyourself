@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+    get '/' => 'pages#landing'
+
+
 resource :users
 resource :sessions
 

@@ -2,5 +2,9 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 <p>Book a reservation</p>
-<%= render 'reservation_form',
-reservation: @reservation %>
+<div class="reservation_card">
+  <%= render 'reservation_form', reservation: @reservation, restaurant: @restaurant %>
+</div>
+<div class="restaurant_card">
+  <%= render './restaurants/restaurant', restaurant: @restaurant %>
+</div>

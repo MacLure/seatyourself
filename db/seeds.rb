@@ -11,7 +11,10 @@ Restaurant.delete_all
 Reservation.delete_all
 MenuItem.delete_all
 
-u1 = User.create!(name:"Malcolm", email:"malcolm@email.com", loyalty_points:0)
-rnt1 = Restaurant.create!(name:"chez MAlcolm", open_from: Time.now, open_until: Time.now, capacity: 100, max_reservation_size: 10, price_range: 5, summary:"blah blah blah", user_id: u1.id, address:"123 street road, Toronto, on, h6j5h5", neighbourhood:"yorkville", category:"chinese")
-rez1 = Reservation.create!(user_id: u1.id, restaurant_id: rnt1.id, time:Time.now, party_size: 5)
-menu1 = MenuItem.create!(restaurant_id: rnt1.id, dish: "gyoza", price:9)
+
+user1 = User.create!(name: "Malcolm", email: "a@b.c", loyalty_points: 0, password: "123")
+user2 = User.create!(name: "Malcolms", email: "q@w.e", loyalty_points: 0, password: "123")
+
+restaurant1 = Restaurant.create!(name: "chez malcolm", capacity: 5, max_reservation_size: 2, price_range: 4, summary: "asfasdfasfa", user_id: 1, address: "asdfasdf", neighbourhood: "zxvczxcv", category: "chinese", mon_open_from: 8, mon_open_until: 19, tues_open_from: 8, tues_open_until: 19, wed_open_from: 8, wed_open_until: 19, thurs_open_until: 19, thurs_open_from: 8, fri_open_from: 8, fri_open_until: 19, sat_open_from: 8, sat_open_until: 19, sun_open_from: 8, sun_open_until: 19)
+menu_item1 = MenuItem.create!(restaurant_id: 1, dish: "sandwich", price: 12)
+reservation1 = Reservation.create!(user_id: 1, restaurant_id: 1, time: Time.now, party_size: 2)

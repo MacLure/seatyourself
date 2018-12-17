@@ -2,4 +2,6 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 <p>Add a menu item</p>
-<%= render 'menu_item_form', menu_item: @menu_item %>
+<div class="menu_item_card">
+  <%= render 'menu_item_form', menu_item: @menu_item, restaurant: @restaurant %>
+</div>

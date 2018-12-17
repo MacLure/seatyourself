@@ -3,7 +3,13 @@
 <p>Price range: <%= restaurant.price_range %></p>
 <p>About: <%= restaurant.summary %></p>
 <p>Maximum Reservation Size: <%= restaurant.max_reservation_size %> People</p>
-<p>Opens: <%= restaurant.open_from %></p>
-<p>Closes: <%= restaurant.open_until %></p>
+<p>Hours:</p>
+<p>Monday: <%= restaurant.mon_open_from %> - <%= restaurant.mon_open_until %>
+<p>Tuesday: <%= restaurant.tues_open_from %> - <%= restaurant.tues_open_until %>
+<p>Wednesday: <%= restaurant.wed_open_from %> - <%= restaurant.wed_open_until %>
+<p>Thursday: <%= restaurant.thurs_open_from %> - <%= restaurant.thurs_open_until %>
+<p>Friday: <%= restaurant.fri_open_from %> - <%= restaurant.fri_open_until %>
+<p>Saturday: <%= restaurant.sat_open_from %> - <%= restaurant.sat_open_until %>
+<p>Sunday: <%= restaurant.sun_open_from %> - <%= restaurant.sun_open_until %>
 <p>neighbourhood: <%= restaurant.neighbourhood %></p>
 <p>Address: <%= restaurant.address %></p>

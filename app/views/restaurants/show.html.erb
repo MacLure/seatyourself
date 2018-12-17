@@ -1,7 +1,21 @@
   <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<%= render 'restaurant',
-  restaurant: @restaurant %>
-  <%= link_to 'edit', edit_restaurant_path %>
+<div class="restaurant_details_card">
+  <%= render 'restaurant', restaurant: @restaurant %>
+  ~ Menu ~
+  <ul>
+  <% @menu_items.each do |item| %>
+    <li>
+      <%= render './menu_items/menu_item', menu_item: item %>
+    </li>
+  <% end %>
+</ul>
+  <% if @restaurant.user_id == @user.id %>
+    <%= link_to 'edit', edit_restaurant_path %> | <%= link_to 'add menu item', new_restaurant_menu_item_path(@restaurant.id) %>
+  <%else%>
+    <%= link_to 'Make a reservation', new_restaurant_reservation_path(@restaurant.id) %>
+  <%end%>
+  
+</div>
   

@@ -12,8 +12,9 @@ class RestaurantsController < ApplicationController
     end
 
     def show
+        @user = current_user
         @restaurant = Restaurant.find(params[:id])
-        # @menu_items = @restaurant.menu_items
+        @menu_items = @restaurant.menu_items
         # @menu_item = MenuItem.new
     end
 
@@ -24,8 +25,20 @@ class RestaurantsController < ApplicationController
     def create
         @restaurant = Restaurant.new
         @restaurant.name = params[:restaurant][:name]
-        @restaurant.open_from = params[:restaurant][:open_from]
-        @restaurant.open_until = params[:restaurant][:open_until]
+        @restaurant.mon_open_from = params[:restaurant][:mon_open_from]
+        @restaurant.mon_open_until = params[:restaurant][:mon_open_until]
+        @restaurant.tues_open_until = params[:restaurant][:tues_open_until]
+        @restaurant.tues_open_from = params[:restaurant][:tues_open_from]
+        @restaurant.wed_open_until = params[:restaurant][:wed_open_until]
+        @restaurant.wed_open_from = params[:restaurant][:wed_open_from]
+        @restaurant.thurs_open_until = params[:restaurant][:thurs_open_until]
+        @restaurant.thurs_open_from = params[:restaurant][:thurs_open_from]
+        @restaurant.fri_open_until = params[:restaurant][:fri_open_until]
+        @restaurant.fri_open_from = params[:restaurant][:fri_open_from]
+        @restaurant.sat_open_until = params[:restaurant][:sat_open_until]
+        @restaurant.sat_open_from = params[:restaurant][:sat_open_from]
+        @restaurant.sun_open_until = params[:restaurant][:sun_open_until]
+        @restaurant.sun_open_from = params[:restaurant][:sun_open_from]
         @restaurant.capacity = params[:restaurant][:capacity]
         @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
         @restaurant.price_range = params[:restaurant][:price_range]
@@ -50,8 +63,20 @@ class RestaurantsController < ApplicationController
     def update
         @restaurant = Restaurant.find(params[:id])
         @restaurant.name = params[:restaurant][:name]
-        @restaurant.open_from = params[:restaurant][:open_from]
-        @restaurant.open_until = params[:restaurant][:open_until]
+        @restaurant.mon_open_from = params[:restaurant][:mon_open_from]
+        @restaurant.mon_open_until = params[:restaurant][:mon_open_until]
+        @restaurant.tues_open_until = params[:restaurant][:tues_open_until]
+        @restaurant.tues_open_from = params[:restaurant][:tues_open_from]
+        @restaurant.wed_open_until = params[:restaurant][:wed_open_until]
+        @restaurant.wed_open_from = params[:restaurant][:wed_open_from]
+        @restaurant.thurs_open_until = params[:restaurant][:thurs_open_until]
+        @restaurant.thurs_open_from = params[:restaurant][:thurs_open_from]
+        @restaurant.fri_open_until = params[:restaurant][:fri_open_until]
+        @restaurant.fri_open_from = params[:restaurant][:fri_open_from]
+        @restaurant.sat_open_until = params[:restaurant][:sat_open_until]
+        @restaurant.sat_open_from = params[:restaurant][:sat_open_from]
+        @restaurant.sun_open_until = params[:restaurant][:sun_open_until]
+        @restaurant.sun_open_from = params[:restaurant][:sun_open_from]
         @restaurant.capacity = params[:restaurant][:capacity]
         @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
         @restaurant.price_range = params[:restaurant][:price_range]
@@ -69,12 +94,14 @@ class RestaurantsController < ApplicationController
     end
 
     def destroy
-        @restaurant = Product.find([:params])
+        @restaurant = Restaurant.find([:params])
         @restaurant.destroy
-
-        redirect_to user_path
-        flash[:notice] = "Restaurant removed."
-
+        redirect_to restaurants_path
+        # ^ was user_path
+        flash[:notice] = "Your restaurant was successfully removed."
     end
-
 end
+
+
+# redirect_to user_path
+# flash[:notice] = "Restaurant removed."

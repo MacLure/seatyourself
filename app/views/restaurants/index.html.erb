@@ -1,13 +1,13 @@
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<p>Restaurants:</p>
-
+<img src="assets/shop.svg" class="svg"><h2 class="title">Restaurants</h2>
 <ul>
   <% @restaurants.each do |restaurant| %>
-  <%= render 'restaurant',
-  restaurant: restaurant %>
-  <%= link_to 'details', restaurant_path(restaurant.id)%>
-
+    <li>
+      <div class="restaurant_card">
+        <%= render 'restaurant_short', restaurant: restaurant %>
+      </div>
+    </li>
   <% end %>
 </ul>

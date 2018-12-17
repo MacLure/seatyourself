@@ -1,8 +1,7 @@
 <%= form_for restaurant do |f| %>
 <% if restaurant.errors.any? %>
    <div id="error_explanation">
-     <p><%= pluralize(restaurant.errors.count, "error") %> prohibited this review from being saved:</p>
-
+     <p><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</p>
      <ul>
      <% restaurant.errors.full_messages.each do |msg| %>
        <li><%= msg %></li>
@@ -13,14 +12,41 @@
   <p>
     <%= f.label :name %><br/>
     <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :open_from %><br/>
-    <%= f.datetime_select( :open_from, :discard_minute => true, :discard_year => true, :discard_month => true, :discard_day => true) %>
-  </p>
-  <p>
-    <%= f.label :open_until %><br/>
-    <%= f.datetime_select( :open_until, :discard_minute => true, :discard_year => true, :discard_month => true, :discard_day => true) %>
+    <br/>
+    <%= f.label :mon_open_from %>
+    <%= f.number_field :mon_open_from %>
+    <%= f.label :mon_open_until %>
+    <%= f.number_field :mon_open_until %>
+    <br/>
+    <%= f.label :tues_open_from %>
+    <%= f.number_field :tues_open_from %>
+    <%= f.label :tues_open_until %>
+    <%= f.number_field :tues_open_until %>
+    <br/>
+    <%= f.label :wed_open_from %>
+    <%= f.number_field :wed_open_from %>
+    <%= f.label :wed_open_until %>
+    <%= f.number_field :wed_open_until %>
+    <br/>
+    <%= f.label :thurs_open_from %>
+    <%= f.number_field :thurs_open_from %>
+    <%= f.label :thurs_open_until %>
+    <%= f.number_field :thurs_open_until %>
+    <br/>
+    <%= f.label :fri_open_from %>
+    <%= f.number_field :fri_open_from %>
+    <%= f.label :fri_open_until %>
+    <%= f.number_field :fri_open_until %>
+    <br/>
+    <%= f.label :sat_open_from %>
+    <%= f.number_field :sat_open_from %>
+    <%= f.label :sat_open_until %>
+    <%= f.number_field :sat_open_until %>
+    <br/>
+    <%= f.label :sun_open_from %>
+    <%= f.number_field :sun_open_from %>
+    <%= f.label :sun_open_until %>
+    <%= f.number_field :sun_open_until %>
   </p>
   <p>
     <%= f.label :capacity %><br/>

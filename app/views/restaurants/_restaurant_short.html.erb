@@ -1,0 +1,7 @@
+<h2><%= restaurant.name %></h2>
+  <div class="left">
+    <p>Category: <%= restaurant.category %></p>
+    <p>Price range: <%= restaurant.price_range %></p>
+    <p>About: <%= restaurant.summary %></p>
+    <p>neighbourhood: <%= restaurant.neighbourhood %></p>
+    <p><%= link_to 'details', restaurant_path(restaurant.id)%></p>

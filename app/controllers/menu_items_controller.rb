@@ -2,6 +2,8 @@ class MenuItemsController < ApplicationController
 
     def index
         @menu_items = MenuItem.all
+        @menu_items = @restaurant.menu_items
+
     end
 
     # def show
@@ -10,19 +12,27 @@ class MenuItemsController < ApplicationController
 
     def new
         @menu_item = MenuItem.new
+        @restaurant = Restaurant.find_by(params[:id])
     end
 
     def create
         @restaurant = Restaurant.find_by(params[:id])
-
         @menu_item = MenuItem.new
-        @menu_items = @restaurant.menu_items
+        
+        if @restaurant.save
+            redirect_to restaurant_path(@restaurant)
+            flash[:notice] = "Menu item added."
+        else
+            render :new
+        end
     end
 
     def edit
         @restaurant = Restaurant.find_by(params[:id])
         @menu_item = MenuItem.find(params[:id])
         @menu_item.restaurant = @restaurant
+        @menu_items = @restaurant.menu_items
+
     end
 
     def update
