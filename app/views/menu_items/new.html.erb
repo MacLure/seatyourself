@@ -1,7 +1,14 @@
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<p>Add a menu item</p>
+<p>New menu item:</p>
+  <ul>
+  <% @menu_items.each do |item| %>
+    <li>
+      <%= render './menu_items/menu_item', menu_item: item %>
+    </li>
+  <% end %>
+</ul>
 <div class="menu_item_card">
   <%= render 'menu_item_form', menu_item: @menu_item, restaurant: @restaurant %>
 </div>

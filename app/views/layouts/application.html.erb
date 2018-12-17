@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Seatyourself</title>
+  <title>Seat Yourself</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -10,9 +10,15 @@
 </head>
 <body>
   <header>
-  <%= link_to restaurants_path do %>
-    <span class="logo"><img src="/assets/plate-fork-and-knife.svg" class="svg"> Seat Yourself</span>
-  <% end %>
+    <div class="branding"><span class="logo"><img src="/assets/plate-fork-and-knife.svg" class="svg"></span>
+    <h1>
+      <%= link_to restaurants_path do %>
+      Seat Yourself<% end %>
+    </h1>
+    </div>
+
+
+
     <nav class="nav">
       <% if current_user %> Hello, <%=current_user.name%> | <%=link_to 'Profile', users_path %> | <%= link_to "Log out", sessions_path('0'), :method => :delete %>
       <%else%> <%=link_to 'Log in', new_sessions_path %> | <%= link_to "Sign up", new_user_path%> <%end%>

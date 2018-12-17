@@ -12,10 +12,11 @@ class RestaurantsController < ApplicationController
     end
 
     def show
+        @all_restaurants = Restaurant.all
         @user = current_user
         @restaurant = Restaurant.find(params[:id])
         @menu_items = @restaurant.menu_items
-        # @menu_item = MenuItem.new
+        @reservations = @restaurant.reservations
     end
 
     def new
@@ -43,11 +44,11 @@ class RestaurantsController < ApplicationController
         @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
         @restaurant.price_range = params[:restaurant][:price_range]
         @restaurant.summary = params[:restaurant][:summary]
-        @restaurant.user_id = params[:restaurant][:user_id]
+        @restaurant.user_id = current_user.id
         @restaurant.address = params[:restaurant][:address]
         @restaurant.neighbourhood = params[:restaurant][:neighbourhood]
         @restaurant.category = params[:restaurant][:category]
-
+        
         if @restaurant.save
             redirect_to restaurants_path
             flash[:notice] = "Restaurant added."
@@ -81,7 +82,6 @@ class RestaurantsController < ApplicationController
         @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
         @restaurant.price_range = params[:restaurant][:price_range]
         @restaurant.summary = params[:restaurant][:summary]
-        @restaurant.user_id = params[:restaurant][:user_id]
         @restaurant.address = params[:restaurant][:address]
         @restaurant.neighbourhood = params[:restaurant][:neighbourhood]
         @restaurant.category = params[:restaurant][:category]

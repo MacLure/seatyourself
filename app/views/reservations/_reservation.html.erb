@@ -1,3 +1,8 @@
-<p>Name: <%= reservation.name %></p>
+<p>Date: <%= Date::DAYNAMES[reservation.date.wday] %></p>
 <p>Time: <%= reservation.time %></p>
 <p>Party Size: <%= reservation.party_size %></p>
+<p>
+<%= link_to restaurant_path((reservation.restaurant_id)) do %>
+    <%= @all_restaurants.find(reservation.restaurant_id).name %>
+  <% end %>
+</p>

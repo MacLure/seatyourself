@@ -1,7 +1,7 @@
 <div class="user_card">
     <p><%= @user.name %></p>
     <p><%= @user.email %> | <%= @user.phone_number %></p>
-    <span class="users_loyalty_points"><img src="assets/star-black.svg" class="svg"><%= @user.loyalty_points %></span>
+    <span class="users_loyalty_points"><%=image_tag("star-black", :class =>"svg")%><%= @user.loyalty_points %></span>
     <p><%= link_to "Edit", edit_user_path(@user.id)%> | <%= link_to "Add a restaurant", new_restaurant_path%></p>
 </div>
 

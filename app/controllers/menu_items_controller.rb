@@ -11,6 +11,7 @@ class MenuItemsController < ApplicationController
     # end
 
     def new
+        @menu_items = MenuItem.all
         @menu_item = MenuItem.new
         @restaurant = Restaurant.find_by(params[:id])
     end
@@ -18,8 +19,10 @@ class MenuItemsController < ApplicationController
     def create
         @restaurant = Restaurant.find_by(params[:id])
         @menu_item = MenuItem.new
-        
-        if @restaurant.save
+        @menu_item.dish = params[:menu_item][:dish]
+        @menu_item.price = params[:menu_item][:price]
+        @menu_item.restaurant_id = @restaurant.id
+        if @menu_item.save
             redirect_to restaurant_path(@restaurant)
             flash[:notice] = "Menu item added."
         else
@@ -45,7 +48,7 @@ class MenuItemsController < ApplicationController
         if @menu_item.save
             redirect_to restaurant_path(@restaurant)
         else
-            render render edit_menu_item_path
+            render edit_menu_item_path
         end
     end
 

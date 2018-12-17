@@ -1,7 +1,11 @@
-<h2><%= restaurant.name %></h2>
-  <div class="left">
-    <p>Category: <%= restaurant.category %></p>
-    <p>Price range: <%= restaurant.price_range %></p>
-    <p>About: <%= restaurant.summary %></p>
-    <p>neighbourhood: <%= restaurant.neighbourhood %></p>
-    <p><%= link_to 'details', restaurant_path(restaurant.id)%></p>
+
+<div class="card_header"><h2><%= restaurant.name %></h2></div>
+<div class="restaurant_short">
+    <p class="about"><span class="p"></span> <%= restaurant.summary %></p>
+
+    <p><span class="p">Category:</span> <%= restaurant.category %></p>
+    <p><span class="p">Price range:</span> <%= restaurant.price_range %></p>
+    <p><span class="p">neighbourhood:</span> <%= restaurant.neighbourhood %></p>
+</div>
+
+<span class="details"><%= link_to 'details', restaurant_path(restaurant.id)%></span>

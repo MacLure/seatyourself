@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     before_action :ensure_user_owns_restaurant, only: [:edit, :update, :destroy]
 
     def preferred_users
-      @User.reservations
-    end 
+      @user.reservations
+    end
 
     def load_restaurant
         @restaurant = Restaurant.find_by(params[:id])
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         @user.email = params[:user][:email]
         @user.password = params[:user][:password]
         @user.password_confirmation = params[:user][:password_confirmation]
-        @user.loyalty_points = params[:user][:loyalty_points]
+        @user.loyalty_points = 0
 
         if
             @user.save

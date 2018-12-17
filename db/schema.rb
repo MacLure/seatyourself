@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_214430) do
+ActiveRecord::Schema.define(version: 2018_12_17_150908) do
 
   create_table "menu_items", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -20,8 +20,15 @@ ActiveRecord::Schema.define(version: 2018_12_15_214430) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "reservations" because of following StandardError
-#   Unknown type 'name' for column 'phone_number'
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "restaurant_id"
+    t.datetime "date"
+    t.integer "party_size"
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"

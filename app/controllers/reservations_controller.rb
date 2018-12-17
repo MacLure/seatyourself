@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
 
+
     # def index
 
     # end
@@ -8,8 +9,9 @@ class ReservationsController < ApplicationController
 
     # end
 
-
-
+    # def add_loyalty_points
+    #     current_user.loyalty_points += 1
+    # end
 
     def new
         @reservation = Reservation.new
@@ -17,29 +19,25 @@ class ReservationsController < ApplicationController
     end
 
     def create
+        @user = current_user
         @reservation = Reservation.new
-        @reservation.user_id = current_user.id
-
-        @reservation.restaurant_id = params[:reservation][:restaurant_id]
-        @reservation.time = params[:reservation][:time]
-        @reservation.party_size = params[:reservation][:party_size]
-        @reservation.phone_number = current_user.phone_number
-        @reservation.name = current_user.name
-
         @restaurant = Restaurant.find(params[:restaurant_id])
-        @reservations = @restaurant.reservations
+
+        @reservation.user_id = current_user.id
         @reservation.restaurant_id =  @restaurant.id
-  
+        @reservation.date = params[:reservation][:date]
+        @reservation.party_size = params[:reservation][:party_size]
+        @reservation.time = params[:reservation][:time]
 
-
+        @reservation.restaurant_id =  @restaurant.id
 
         if @reservation.save
-          award_loyalty_points
-          redirect_to restaurant_path(@restaurant)
+          @user.loyalty_points += 1
+          @user.save
+          redirect_to user_path(current_user.id)
           flash[:notice] = "Reservation made!"
-
         else
-          render restaurant_path
+          render :new
         end
     end
 
