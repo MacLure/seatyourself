@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # helper_method :award_loyalty_points
-  #def award_loyalty_points
-    #if @reservation.save
-      #params[:user][:loyalty_points] += 1
-      #end
-  #end
+  helper_method :award_loyalty_points
+  def award_loyalty_points
+    if @reservation.save
+      params[:user][:loyalty_points] += 1
+      end
+  end
 
   private
 
