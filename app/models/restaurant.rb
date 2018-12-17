@@ -1,16 +1,16 @@
 class Restaurant < ApplicationRecord
     belongs_to :user
-    has_many :reservations 
-    has_many :menu_items
     has_many :reservations
-    
+    has_many :menu_items
+
+
 
     validate :price_range_is_between_1_and_4
     def price_range_is_between_1_and_4
       if price_range? && (price_range < 1 || price_range > 4)
         errors.add(:price_range, "must be between 1 and 4")
       end
-    end 
+    end
 
     validate :open_from_is_between_0_and_24
     def open_from_is_between_0_and_24
@@ -38,7 +38,7 @@ class Restaurant < ApplicationRecord
           errors.add(time, "must be between 0 and 24")
         end
       end
-    end 
+    end
 
 
 

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     before_action :ensure_user_owns_restaurant, only: [:edit, :update, :destroy]
 
     def preferred_users
-      @user.reservations
+      @user.their_reservations.reverse
     end
 
     def load_restaurant
