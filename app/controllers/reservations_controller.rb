@@ -8,6 +8,9 @@ class ReservationsController < ApplicationController
 
     # end
 
+
+
+
     def new
         @reservation = Reservation.new
         @restaurant = Restaurant.find(params[:restaurant_id])
@@ -26,10 +29,12 @@ class ReservationsController < ApplicationController
         @restaurant = Restaurant.find(params[:restaurant_id])
         @reservations = @restaurant.reservations
         @reservation.restaurant_id =  @restaurant.id
+  
 
 
 
         if @reservation.save
+          award_loyalty_points
           redirect_to restaurant_path(@restaurant)
           flash[:notice] = "Reservation made!"
 
@@ -69,6 +74,12 @@ class ReservationsController < ApplicationController
         redirect_to restaurant_path(@restaurant)
         flash[:notice] = "Reservation cancelled."
     end
+
+    def award_loyalty_points
+    params[:user][:loyalty_points] += 1
+
+    end
+
 
 end
 
