@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     before_action :ensure_logged_in, except: [:new, :create]
     before_action :ensure_user_owns_restaurant, only: [:edit, :update, :destroy]
 
+    def preferred_users
+      @User.reservations
+    end 
+
     def load_restaurant
         @restaurant = Restaurant.find_by(params[:id])
     end

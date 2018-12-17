@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
     has_many :restaurants
     has_many :reservations
+    has_many :their_reservations, through: :restaurants
     # has_many :menu_items, :through restaurant
 
     validates :name, presence: true
