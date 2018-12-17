@@ -50,10 +50,29 @@ class Reservation < ApplicationRecord
     end
   end 
 
-  validates :time, presence: true
-  validates :party_size, presence: true
-  validates :party_size, presence: true
-  validates :party_size, numericality: true
+# self.restaurant.reservations.where(date: date, time: time).sum 
+
+validate :reservation_size_cant_be_larger_than_restaurant_max_reservation_size
+
+def reservation_size_cant_be_larger_than_restaurant_max_reservation_size
+  to_seat = 0
+  self.restaurant.reservations.where(date: date, time: time).each do |reservation|
+    to_seat += reservation.party_size
+  end
+  if (to_seat + party_size) >= self.restaurant.capacity
+    errors.add(:party_size, ": This restaurant is at or near capacity and can't accomodate #{party_size} additinal guests.")
+  end
+end
+    
+
+
+
+# , time: time).sum 
+
+#   validates :time, presence: true
+#   validates :party_size, presence: true
+#   validates :party_size, presence: true
+#   validates :party_size, numericality: true
   # validates :party_size, :less_than_or_equal_to: max_reservation_size
   # validates :party_size,  :less_than_or_equal_to: capacity
 end

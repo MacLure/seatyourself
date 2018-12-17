@@ -1,4 +1,4 @@
-<p>Date: <%= Date::DAYNAMES[reservation.date.wday] %></p>
+<p>Date: <%= Date::DAYNAMES[reservation.date.wday] %>,  <%= reservation.date.strftime("%B %d, %Y") %></p>
 <p>Time: <%= reservation.time %></p>
 <p>Party Size: <%= reservation.party_size %></p>
 <p>
