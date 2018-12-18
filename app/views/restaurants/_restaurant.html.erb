@@ -1,11 +1,12 @@
-<p><%= restaurant.name %></p>
+<div class="card_header"><h2><%= restaurant.name %></h2></div>
+<div class="restaurant_short">
 <p>Category: <%= restaurant.category %></p>
 <p>Price range: <% restaurant.price_range.times do %>$<%end%>
 </p>
 <p>About: <%= restaurant.summary %></p>
 <p>Maximum Reservation Size: <%= restaurant.max_reservation_size %> People</p>
 <p>Hours:</p>
-<p>Monday: 
+<p>Monday:
     <% if restaurant.mon_open_from && restaurant.mon_open_until %>
             <%= restaurant.mon_open_from %> - <%= restaurant.mon_open_until %>
     <%else%>
@@ -58,6 +59,5 @@
 <% restaurant.neighbourhood %>
 </p>
 <p>Address:
-<% restaurant.address %>
-
-</p>
+<% restaurant.address %></p>
+</div>
