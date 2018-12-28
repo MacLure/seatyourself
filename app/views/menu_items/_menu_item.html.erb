@@ -1,1 +1,17 @@
-<p><%= menu_item.dish %>: $ <%= menu_item.price %></p>
+<div class="menu_item">
+    <div class="menu_item_details">
+        <%= menu_item.dish %>: $ <%= menu_item.price %>
+    </div>
+    <div class="menu_item_delete">
+        <%= link_to "/restaurants/#{menu_item.restaurant_id}/menu_items/#{menu_item.id}", method: :delete, data: {confirm: "Are you sure you want to delete this item?"} do %>
+            <span class="link_button delete_button">
+                <%=image_tag('rubbish-bin', class: "svg") %>
+                Delete
+            </span>
+        <% end %>
+
+
+
+
+    </div>
+</div>

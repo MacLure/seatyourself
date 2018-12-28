@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-    before_action :load_restaurant, except:[:new, :show, :index, :new, :create]
-    before_action :load_menu_item, except:[:new, :show, :index, :new, :create]
-    before_action :load_reservation, except:[:new, :show, :index, :new, :create]
+    before_action :load_restaurant, except:[:new, :show, :index, :new, :edit, :create]
+    before_action :load_menu_item, except:[:new, :show, :index, :new, :edit, :create]
+    before_action :load_reservation, except:[:new, :show, :index, :edit, :new, :create]
 
     before_action :ensure_logged_in, except: [:new, :create]
-    before_action :ensure_user_owns_restaurant, only: [:edit, :update, :destroy]
+    before_action :ensure_user_owns_restaurant, only: [:update, :destroy]
 
     def load_restaurant
         @restaurant = Restaurant.find(params[:id])

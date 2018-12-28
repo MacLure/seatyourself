@@ -1,64 +1,105 @@
-<div class="card_header"><h2><%= restaurant.name %></h2></div>
-<div class="restaurant_short">
-<p>Category: <%= restaurant.category %></p>
-<p>Price range: <% restaurant.price_range.times do %>$<%end%>
-</p>
-<p>About: <%= restaurant.summary %></p>
-<p>Maximum Reservation Size: <%= restaurant.max_reservation_size %> People</p>
-<p>Capacity: <%= restaurant.capacity %> People</p>
-<p>Hours:</p>
-<p>Monday:
-    <% if restaurant.mon_open_from && restaurant.mon_open_until %>
-            <%= restaurant.mon_open_from %> - <%= restaurant.mon_open_until %>
-    <%else%>
-        closed
+<div class="card_header"><h2><%= restaurant.name %></h2>
+    <% if @user && @restaurant.user_id == @user.id %>
+          <%= link_to edit_restaurant_path(@restaurant.id) do %>
+        <span class="link_button edit_button">
+            <%=image_tag('writing', class: "svg") %>
+            Edit
+        </span>
+    <% end %>
     <%end%>
-</p>
-<p>Tuesday:
-<% if restaurant.tues_open_from && restaurant.tues_open_until %>
-    <%= restaurant.tues_open_from %> - <%= restaurant.tues_open_until %>
-<%else%>
-    closed
-<%end%>
-</p>
-<p>Wednesday:
-<% if restaurant.wed_open_from && restaurant.wed_open_until %>
-    <%= restaurant.wed_open_from %> - <%= restaurant.wed_open_until %>
-<%else%>
-    closed
-<%end%>
-</p>
-<p>Thursday:
-<% if restaurant.thurs_open_from && restaurant.thurs_open_until %>
-    <%= restaurant.thurs_open_from %> - <%= restaurant.thurs_open_until %>
-<%else%>
-    closed
-<%end%>
-</p>
-<p>Friday:
-<% if restaurant.fri_open_from && restaurant.fri_open_until %>
-    <%= restaurant.fri_open_from %> - <%= restaurant.fri_open_until %>
-<%else%>
-    closed
-<%end%>
-</p>
-<p>Saturday:
-<% if restaurant.sat_open_from && restaurant.sat_open_until %>
-    <%= restaurant.sat_open_from %> - <%= restaurant.sat_open_until %>
-<%else%>
-    closed
-<%end%>
-</p>
-<p>Sunday:
-<% if restaurant.sun_open_from && restaurant.sun_open_until %>
-    <%= restaurant.sun_open_from %> - <%= restaurant.sun_open_until %>
-<%else%>
-    closed
-<%end%>
-</p>
-<p>neighbourhood:
-<% restaurant.neighbourhood %>
-</p>
-<p>Address:
-<% restaurant.address %></p>
 </div>
+
+<div class="restaurant_details">
+
+    <p><span class="label">Category:</span><br>
+        <%= restaurant.category %>
+    </p>
+
+    <p><span class="label">Price range:</label><br>
+        <% restaurant.price_range.times do %><img src="/assets/coin-of-dollar.svg" class="price-svg"><%end%>
+    </p>
+
+    <p><span class="label">neighbourhood:</span><br>
+        <% restaurant.neighbourhood %>
+    </p>
+
+    <div class="restaurant_about">
+        <p><span class="label">About:</span><br>
+            <%= restaurant.summary %>
+        </p>
+    </div>
+
+    <div class="restaurant_hours_info">
+        <p><span class="label">Open:</span></p>
+
+        <div class="restaurant_open">
+            <div class="weekdays">
+                <p>Mon:<p>
+                <p>Tues:<p>
+                <p>Wed:<p>
+                <p>Thurs:<p>
+                <p>Fri:<p>
+                <p>Sat:<p>
+                <p>Sun:<p>
+            </div>
+            <div class="hours">
+                <p>
+                    <% if restaurant.mon_open_from && restaurant.mon_open_until %>
+                        <%= restaurant.mon_open_from %> - <%= restaurant.mon_open_until %>
+                    <%else%>closed<%end%>
+                </p>
+                <p>
+                    <% if restaurant.tues_open_from && restaurant.tues_open_until %>
+                        <%= restaurant.tues_open_from %> - <%= restaurant.tues_open_until %>
+                    <%else%>closed<%end%></p>
+                <p>
+                <p>
+                    <% if restaurant.wed_open_from && restaurant.wed_open_until %>
+                        <%= restaurant.wed_open_from %> - <%= restaurant.wed_open_until %>
+                    <%else%>closed<%end%>
+                </p>
+                <p>
+                    <% if restaurant.thurs_open_from && restaurant.thurs_open_until %>
+                        <%= restaurant.thurs_open_from %> - <%= restaurant.thurs_open_until %>
+                    <%else%>closed<%end%>
+                </p>
+                <p>
+                    <% if restaurant.fri_open_from && restaurant.fri_open_until %>
+                        <%= restaurant.fri_open_from %> - <%= restaurant.fri_open_until %>
+                    <%else%>closed<%end%>
+                </p>
+                <p>
+                    <% if restaurant.sat_open_from && restaurant.sat_open_until %>
+                        <%= restaurant.sat_open_from %> - <%= restaurant.sat_open_until %>
+                    <%else%>closed<%end%>
+                </p>
+                <p>
+                    <% if restaurant.sun_open_from && restaurant.sun_open_until %>
+                        <%= restaurant.sun_open_from %> - <%= restaurant.sun_open_until %>
+                    <%else%>closed<%end%>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="restaurant_address">
+        <p><span class="label">Address:</span>
+        <% restaurant.address %></p>
+    </div>
+
+    <p><span class="label">Capacity:</span><br>
+        <%= restaurant.capacity %>
+            <%if restaurant.capacity == 1 %>
+                person
+            <%else%>
+                people
+            <%end%>
+    </p>
+
+    <p><span class="label">Maximum Reservation Size:</span><br>
+        <%= restaurant.max_reservation_size %> People
+    </p>
+</div>
+
+
+
+

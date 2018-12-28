@@ -1,0 +1,19 @@
+<div class="card_header">
+  <h2>
+    <%= link_to restaurant_path((reservation.restaurant_id)) do %>
+      <%= @all_restaurants.find(reservation.restaurant_id).name %>
+    <% end %>
+      </h2>
+
+    <%= link_to restaurant_path(reservation.restaurant.id) do %>
+      <span class="link_button details_button">
+        <%=image_tag('magnifier', class: "svg") %>
+        Details
+    </span>
+    <%end%>
+</div>
+<div class="reservation_contents">
+  <p><span class="label">Date:</span> <%= Date::DAYNAMES[reservation.date.wday] %>,  <%= reservation.date.strftime("%B %d, %Y") %></p>
+  <p><span class="label">Time:</span> <%= reservation.time %></p>
+  <p><span class="label">Party Size:</span> <%= reservation.party_size %></p>
+</div>

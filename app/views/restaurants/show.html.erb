@@ -1,24 +1,58 @@
   <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<div class="restaurant_details_card">
+
+<div class="card restaurant_details_card">
     <%= render 'restaurant', restaurant: @restaurant %>
-    ~ Menu ~
-    <ul>
-      <% @menu_items.each do |item| %>
-        <li>
-          <%= render './menu_items/menu_item', menu_item: item %>
-        </li>
+    <%if @restaurant.user_id == @user.id && @menu_items.length > 0 %>
+      <div class="menu">
+      ~ Menu ~
+      <ul>
+        <% @menu_items.each do |item| %>
+          <li>
+            <%= render './menu_items/menu_item', menu_item: item %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+        <%= link_to new_restaurant_menu_item_path(@restaurant.id) do %>
+          <span class="link_button add_button">
+            <%=image_tag('plus-black-symbol', class: "svg") %>
+            New Menu Item
+          </span>
+        <% end %>
+    <%end%>
+    <% if @user && @restaurant.user_id == @user.id && @menu_items.length == 0%>
+      Your menu list is empty.<br>
+      Show your customers what you serve by adding menu items:<br>
+
+        <%= link_to new_restaurant_menu_item_path(@restaurant.id) do %>
+          <span class="link_button add_button">
+            <%=image_tag('plus-black-symbol', class: "svg") %>
+            New Menu Item
+          </span>
+        <% end %>
+    <%end%>
+
+    <%if @user && @user.id != @restaurant.user_id%>
+
+
+      <%= link_to new_restaurant_reservation_path(@restaurant.id) do %>
+        <span class="link_button add_button reservation_button">
+          <%=image_tag('covered-food-tray-on-a-hand-of-hotel-room-service', class: "svg") %>
+          Make a Reservation
+        </span>
       <% end %>
-    </ul>
-  <% if @restaurant.user_id == @user.id %>
-    <%= link_to 'edit', edit_restaurant_path %> | <%= link_to 'add menu item', new_restaurant_menu_item_path(@restaurant.id) %>
-  <%else%>
-    <%= link_to 'Make a reservation', new_restaurant_reservation_path(@restaurant.id) %>
-  <%end%>
+
+
+    <%elsif !@user%>
+      Please <%=link_to "log in", new_session_path %> or <%= link_to "sign up", new_user_path %> to make a reservation.
+    <%end%>
+  </div>
 </div>
-  <% if @restaurant.user_id == @user.id %>
-    <div class="restaurant_details_card">
+
+  <% if @user && @restaurant.user_id == @user.id %>
+    <div class="card restaurant_details_card">
       <% if @reservations.length == 0 %>
         No reservations
       <%else%>

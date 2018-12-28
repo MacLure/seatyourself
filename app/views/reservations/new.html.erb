@@ -1,10 +1,10 @@
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<p>Book a reservation</p>
-<div class="reservation_card">
+<div class="card reservation_card">
+  <div class="card_header"><h2>Book a Reservation</h2></div>
   <%= render 'reservation_form', reservation: @reservation, restaurant: @restaurant %>
 </div>
-<div class="restaurant_card">
+<div class="card restaurant_card">
   <%= render './restaurants/restaurant', restaurant: @restaurant %>
 </div>

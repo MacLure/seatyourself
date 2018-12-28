@@ -1,10 +1,44 @@
-<div class="card_header"><h2><%= restaurant.name %></h2></div>
-<div class="restaurant_short">
-    <p class="about"><span class="p"></span> <%= restaurant.summary %></p>
+<div class="card_header">
+    <h2>
+        <%= link_to restaurant_path(restaurant.id) do %>
+            <%=restaurant.name%>
+        <% end %>
+    </h2>
 
-    <p><span class="p">Category:</span> <%= restaurant.category %></p>
-    <p><span class="p">Price range:</span> <%= restaurant.price_range %></p>
-    <p><span class="p">neighbourhood:</span> <%= restaurant.neighbourhood %></p>
+        <%= link_to restaurant_path(restaurant.id) do %>
+          <span class="link_button details_button">
+            <%=image_tag('magnifier', class: "svg") %>
+            Details
+          </span>
+        <%end%>
+
+
+    <%if current_user && current_user.id != restaurant.user_id%>
+
+        <%= link_to new_restaurant_reservation_path(restaurant.id) do %>
+            <span class="link_button add_button reservation_button">
+                <%=image_tag('covered-food-tray-on-a-hand-of-hotel-room-service', class: "svg") %>
+                Make a reservation
+            </span>
+        <% end %>
+
+    <%elsif current_user && current_user.id == restaurant.user_id%>
+        ( Your Restaurant )
+    <%elsif !current_user%>
+      Please <%=link_to "log in", new_session_path %> or <%= link_to "sign up", new_user_path %> to make a reservation.
+    <%end%>
 </div>
+<div class="restaurant_short">
+    <p class="about"><%= restaurant.summary %></p>
 
-<span class="details"><%= link_to 'details', restaurant_path(restaurant.id)%></span>
+    <p><span class="label">Category:</span><br>
+        <%= restaurant.category %>
+    </p>
+        <p><span class="label">Neighbourhood:</span><br>
+        <%= restaurant.neighbourhood %>
+    </p>
+    <p> <span class="label">Price range:</span><br>
+        <% restaurant.price_range.times do %><img src="/assets/coin-of-dollar.svg" class="price-svg"><%end%>
+    </p>
+
+</div>

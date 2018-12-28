@@ -11,13 +11,13 @@ class MenuItemsController < ApplicationController
     # end
 
     def new
-        @menu_items = MenuItem.all
+        @menu_items = MenuItem.where("restaurant_id = ?", params[:restaurant_id])
         @menu_item = MenuItem.new
-        @restaurant = Restaurant.find_by(params[:id])
+        @restaurant = Restaurant.find(params[:restaurant_id])
     end
 
     def create
-        @restaurant = Restaurant.find_by(params[:id])
+        @restaurant = Restaurant.find(params[:restaurant_id])
         @menu_item = MenuItem.new
         @menu_item.dish = params[:menu_item][:dish]
         @menu_item.price = params[:menu_item][:price]
@@ -55,8 +55,8 @@ class MenuItemsController < ApplicationController
     def destroy
         @menu_item = MenuItem.find(params[:id])
         @restaurant = Restaurant.find(params[:restaurant_id])
-        @restaurant_item.destroy
-        redirect_to restaurant_path
+        @menu_item.destroy
+        redirect_to restaurant_path(@restaurant.id)
     end
 
 end

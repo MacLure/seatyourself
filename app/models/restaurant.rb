@@ -39,7 +39,12 @@ class Restaurant < ApplicationRecord
       end
     end 
 
-
+    validate :open_from_and_open_until_times_cannot_be_the_same
+    def open_from_and_open_until_times_cannot_be_the_same
+      if (mon_open_from == mon_open_until) || (tues_open_from == tues_open_until) || (wed_open_from == wed_open_until) || (thurs_open_from == thurs_open_until) || (fri_open_from == fri_open_until) || (sat_open_from == sat_open_until) || (sat_open_from == sat_open_until)
+        errors.add(:time, ": Open from and open until cannot be the same value.")
+      end
+    end 
 
     validates :name, presence: true
     validates :address, presence: true

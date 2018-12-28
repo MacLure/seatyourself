@@ -14,13 +14,14 @@
  *= require_self
  */
 
-/*  Variables */
 $wine : #722F37;
+$details: rgb(63, 100, 157);
+$delete: rgb(164, 4, 4);
+$add: rgb(55, 116, 57);
 $charcoal: #1B1C1C;
 $logo-font: 'Roboto Slab', serif;
-$white: #ffffff;
+$font-stack: 'Aleo', serif;
 
-/* Layout Start */
 * {
     margin: 0;
     padding: 0;
@@ -28,58 +29,54 @@ $white: #ffffff;
 
 body {
     background-color: $wine;
+    font-family: $font-stack;
 }
 
 header {
     position: relative;
     height: 70px;
     background-color: $charcoal;
-    color: $white;
+    color: white;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 1fr 31fr;
     justify-content: space-between;
     align-content: space-around;
 }
 
-h1 {
-  padding-left: 75px;
-  font-family: $logo-font;
+.logo {
   display: inline-block;
+  position: absolute;
+  left: 30px;
+  top: 10px;
+  padding-top: 8px;
+  height: 30px;
 }
 
-// h1 > a {
-//   opacity: 1;
-//   transition: opacity 0.5s;
-// }
+.logo-text {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  padding-left: 75px;
+  font-family: $logo-font;
+}
 
-// h1 > a:hover {
-//   opacity: 0.5;
-//   transition: opacity 0.5s;
-// }
-
-.logo {
-   display: inline-block;
-   position: absolute;
-   padding-left: 30px;
-   padding-top: 8px;
-   height: 30px;
-   width: 30px;
- }
  .branding {
    opacity: 1;
    transition: opacity 0.5s;
-
+   display: inline-block;
  }
+
  .branding:hover {
    opacity: 0.5;
    transition: opacity 0.5s;
  }
+
  .branding > a {
    text-decoration: none;
-   color: $white;
+   color: white;
  }
 
- .svg {
+ .logo_svg {
     height: 30px;
     width: 30px;
     display: inline-block;
@@ -88,16 +85,13 @@ h1 {
  .nav {
     display: inline-block;
     padding: 10px 40px;
-    color: $white;
+    color: white;
     text-decoration: none;
     text-align: right;
  }
 
- header > a, h1 >a, nav > a {
-     color: $white;
- }
-
  .nav > a {
+   color: white;
    opacity: 1;
    transition: opacity 0.2s;
  }
@@ -111,15 +105,15 @@ h1 {
     text-decoration: none;
  }
 
-// footer {
-//     background-color: $charcoal;
-//     width: 100%;
-//     height: 65px;
-// }
+h2 > a {
+  color: $charcoal;
+}
+
 
 li {
     list-style: none;
 }
+
 /* Layout End */
 
 
@@ -141,6 +135,7 @@ li {
 
 /* Might Use this for ALL show cards */
 /* Restaurant Index Start */
+
 .container {
   text-align: center;
   width: 50%;
@@ -148,11 +143,8 @@ li {
   padding-top: 15px;
 }
 
-.container > h2 {
-  color: $white;
-}
-
 h2 {
+  color: white;
   display: inline-block;
   vertical-align: middle;
 }
@@ -163,6 +155,11 @@ h2 {
    height: 30px;
    width: 30px;
  }
+
+.label {
+  color: $wine;
+  font-weight: 1000;
+}
 
 .restaurant_short {
   display: grid;
@@ -176,6 +173,44 @@ h2 {
   grid-row: 1/4;
 }
 
+.restaurant_details {
+  padding: 15px 30px 30px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 5;
+  grid-gap: 15px;
+  border-bottom: 1px solid lightgrey;
+
+}
+
+.restaurant_about {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  padding: 10px 0 10px;
+
+}
+
+.restaurant_hours_info {
+  grid-row-start: 3;
+  grid-row-end: 5;
+  border-right: 1px solid lightgrey;
+
+}
+
+.restaurant_open {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.restaurant_address {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  border-bottom: 1px solid lightgrey;
+
+}
+
 .card_header {
   color: $wine;
   padding-bottom: 5px;
@@ -183,42 +218,103 @@ h2 {
   border-bottom: 1px solid lightgrey;
 }
 
-.p {
-  color: $wine;
-
+.card_header, .card_header > h2 {
+  color: $charcoal;
 }
 
-.details > a {
-  background-color: $wine;
+
+// Link Buttons //
+
+
+.link_button {
   color: white;
-  padding: 5px;
+  padding: 10px;
   margin: 5px 0px 0px 15px;
-  border-radius: 5px;
+  border-radius: 2px;
   display: inline-block;
   opacity: 1;
-  transition: opacity 0.5s;
-  }
+  transition: opacity 0.2s;
+}
 
-  .details > a:hover {
-    opacity: 0.7;
-    transition: opacity 0.5s;
-  }
+.link_button > a {
+  color: white;
+}
+
+.link_button > img {
+  width: 17px;
+}
+
+// .link_button > a > img {
+//   width: 17px;
+// }
+
+.link_button:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.details_button {
+  background-color: $details;
+  color: white;
+}
+
+.add_button {
+  background-color: $add;
+}
+
+.reservation_button {
+  grid-row-start: 5;
+  grid-column-start: -2;
+}
+
+.delete_button {
+  background-color: $delete;
+}
+
+.edit_button {
+  background-color: $details;
+}
+
+
+
 /* Restaurant Index End */
 
 
-
-
-
-
-
-
-
 /* Form Start */
-.form {
+.new_restaurant_form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   padding: 15px 30px 30px 15px;
   color: $wine;
+  border-bottom: 1px solid lightgrey;
+
+}
+
+.restaurant_summary{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+.restaurant_summary > p > textarea {
+  width: 92.5%;
+  height: 90px
+}
+
+.new_restaurant_max_reservatin_size {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+
+.restaurant_hours_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 8;
+  padding: 15px 30px 30px 15px;
+  color: grey;
 }
 
 h3 {
@@ -229,12 +325,10 @@ h3 {
 .days {
   grid-column-start: 1;
   grid-column-end: 2;
-  vertical-align: middle;
-  padding: 20px 0px;
 }
 
 .days > p {
-  padding: 10px 0px;
+  padding: 11.5px 0px;
 }
 
 
@@ -261,10 +355,10 @@ h3 {
 }
 
  .submit {
-  background-color: $wine;
-  color: $white;
+  background-color: $add;
+  color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 2px;
   display: inline-block;
   opacity: 1;
   transition: opacity 0.5s;
@@ -276,6 +370,7 @@ h3 {
   font-size: 15px;
   cursor: pointer;
 }
+
 .submit:hover {
   opacity: 0.7;
   transition: opacity 0.5s;
@@ -283,6 +378,121 @@ h3 {
 }
 
 /* form end */
+
+
+/* All Cards Start */
+.card {
+  background: #F8F8FF;
+    border-radius: 2px;
+    padding: 20px;
+    margin: 50px auto;
+    width: 50vw;
+    color: black;
+    box-shadow: 2px 2px 10px black;
+    position: relative;
+}
+
+.login_card, .menu_item_card {
+    width: 25vw;
+}
+
+
+/* All Cards End */
+
+.users_loyalty_points {
+    position: absolute;
+    align-content: center;
+    right: 30px;
+    top: 30px;
+    padding: 10px;
+    background-color: goldenrod;
+    color: white;
+    border-radius: 2px;
+    width: 80px;
+    height: 30px;
+}
+.loyalty_points_contents {
+  position: relative;
+}
+
+.loyalty_points_contents > img {
+  position: absolute;
+  margin: 0;
+  width: 20px;
+}
+
+.loyalty_points_count {
+  position: absolute;
+  margin: 0;
+  left: 30px;
+  top: 5px;
+  font-size: 1.25em;
+}
+
+.notice {
+  text-align: center;
+}
+
+.price-svg {
+  width: 20px;
+  margin: 2px;
+}
+
+.reservation_contents {
+  padding: 15px 30px 30px 15px;
+}
+
+.menu {
+  padding: 20px;
+}
+
+.menu_item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.menu_item_details {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  padding: 15px;
+}
+
+.menu_item_delete {
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+}
+
+#error_explanation {
+  color: red;
+}
+
+
+.user_icon {
+  width: 15px;
+  margin: 0px 5px;
+}
+
+
+
+// footer {
+//     background-color: $charcoal;
+//     width: 100%;
+//     height: 65px;
+// }
+
+
+// h1 > a {
+//   opacity: 1;
+//   transition: opacity 0.5s;
+// }
+
+// h1 > a:hover {
+//   opacity: 0.5;
+//   transition: opacity 0.5s;
+// }
+
+
 
 //
 //
@@ -350,48 +560,3 @@ h3 {
 
 /* Form End */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* All Cards Start */
-.restaurant_card, .login_card, .user_card, .new_restaurant_card, .restaurant_details_card, .reservation_card, .menu_item_card {
-    background: #F8F8FF;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 50px auto;
-    width: 50vw;
-    color: black;
-    // box-shadow: 2px 2px 10px black;
-    position: relative;
-}
-
-.login_card, .menu_item_card {
-    width: 25vw;
-}
-
-/* All Cards End */
-
-
-
-
-
-
-
-
-.users_loyalty_points {
-    position: absolute;
-    right: 30px;
-    top: 30px;
-}

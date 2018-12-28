@@ -1,28 +1,69 @@
-<div class="user_card">
-    <p><%= @user.name %></p>
-    <p><%= @user.email %> | <%= @user.phone_number %></p>
-    <span class="users_loyalty_points"><%=image_tag("star-black", :class =>"svg")%><%= @user.loyalty_points %></span>
-    <p><%= link_to "Edit", edit_user_path(@user.id)%> | <%= link_to "Add a restaurant", new_restaurant_path%></p>
+<div class="card user_card">
+    <p><span class="label">Name:</span><br>
+        <%= @user.name %>
+    </p>
+    <p><span class="label">Email:</span><br>
+        <%= @user.email %>
+    </p>
+    <p><span class="label">Phone:</span><br>
+        <%= @user.phone_number %>
+    </p>
+    <div class="users_loyalty_points">
+        <div class="loyalty_points_contents">
+            <%=image_tag("star-white", :class =>"svg")%>
+            <span class="loyalty_points_count"><%= @user.loyalty_points %></span>
+        </div>
+    </div>
+
+    <%= link_to edit_user_path(@user.id) do %>
+        <span class="link_button edit_button">
+            <%=image_tag('writing', class: "svg") %>
+            Edit
+        </span>
+    <% end %>
+
 </div>
 
-<div class="user_card">
-    Restaurants:
-    <ul>
-        <% @restaurants.each do |restaurant| %>
-            <li>
-                <%= render './restaurants/restaurant_short', restaurant: restaurant %>
-            </li>
-        <% end %>
-    </ul>
+<div class="card user_card">
+    Your Reservations:
+    <% if @reservations.length > 0 %>
+        <ul>
+            <% @reservations.each do |reservation| %>
+                <li>
+                    <%= render './reservations/reservation_customer', reservation: reservation %>
+                </li>
+            <% end %>
+        </ul>
+    <% else %>
+    <p>You don't have any reservations.  <%= link_to "Browse Restaurants", restaurants_path %></p>
+    <% end %>
+
+
 </div>
 
-<div class="user_card">
-    Reservations:
-    <ul>
-        <% @reservations.each do |reservation| %>
-            <li>
-                <%= render './reservations/reservation', reservation: reservation %>
-            </li>
-        <% end %>
-    </ul>
+<div class="card user_card">
+    <% if @restaurants.length > 0 %>
+        Your Restaurants:
+        <ul>
+            <% @restaurants.each do |restaurant| %>
+                <li>
+                    <%= render './restaurants/restaurant_short', restaurant: restaurant %>
+                </li>
+            <% end %>
+        </ul>
+        <%= link_to new_restaurant_path do %>
+          <span class="link_button add_button">
+            <%=image_tag('plus-black-symbol', class: "svg") %>
+            Add Restaurant
+          </span>
+        <%end%>
+    <%else%>
+        Do you own a restaurant?  Add it here:
+        <%= link_to new_restaurant_path do %>
+          <span class="link_button add_button">
+            <%=image_tag('plus-black-symbol', class: "svg") %>
+            Add Restaurant
+          </span>
+        <%end%>
+    <%end%>
 </div>

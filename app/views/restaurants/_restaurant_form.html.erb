@@ -10,43 +10,49 @@
    </div>
 <% end %>
 
-<div class="form">
+<div class="new_restaurant_form">
   <p>
     <%= f.label :name %><br/>
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :capacity %><br/>
-    <%= f.number_field :capacity %>
-  </p>
-  <p>
-    <%= f.label :max_reservation_size %><br/>
-    <%= f.number_field :max_reservation_size %>
+    <%= f.label :category %><br/>
+    <%= f.text_field :category %>
   </p>
   <p>
     <%= f.label :price_range %><br/>
     <%= f.number_field :price_range %>
   </p>
+  <div class="restaurant_summary">
+    <p>
+      <%= f.label :summary %><br/>
+      <%= f.text_area :summary %>
+    </p>
+  </div>
   <p>
     <%= f.label :address %><br/>
     <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :summary %><br/>
-    <%= f.text_area :summary %>
   </p>
   <p>
     <%= f.label :neighbourhood %><br/>
     <%= f.text_field :neighbourhood %>
   </p>
   <p>
-    <%= f.label :category %><br/>
-    <%= f.text_field :category %>
+    <%= f.label :capacity %><br/>
+    <%= f.number_field :capacity %>
   </p>
-    <br/>
+  <div class="new_restaurant_max_reservatin_size">
+    <p>
+      <%= f.label :max_reservation_size %><br/>
+      <%= f.number_field :max_reservation_size %>
+    </p>
+  </div>
+</div>
+
+<h3>Restaurant Hours:</h3>
+<div class="restaurant_hours_form">
       <div class="days">
-        <h3>Hours:</h3>
-        <br/>
+      <p></p>
         <p>Monday</p>
         <p>Tuesday</p>
         <p>Wednesday</p>
@@ -55,50 +61,25 @@
         <p>Saturday</p>
         <p>Sunday</p>
       </div>
-      <div class="open_from">
-      <%= f.label :open_from %>
-      <%= f.number_field :mon_open_from %>
-      <br/>
-      <%= f.label :open_from %>
-      <%= f.number_field :tues_open_from %>
-      <br/>
-      <%= f.label :open_from %>
-      <%= f.number_field :wed_open_from %>
-      <br/>
-      <%= f.label :open_from %>
-      <%= f.number_field :thurs_open_from %>
-      <br/>
-      <%= f.label :open_from %>
-      <%= f.number_field :fri_open_from %>
-      <br/>
-      <%= f.label :open_from %>
-      <%= f.number_field :sat_open_from %>
-      <br/>
-      <%= f.label :open_from %>
-      <%= f.number_field :sun_open_from %>
+      <div class="restaurant_hours_fields">
+      <p>Open from:</p>
+      <p><%= f.number_field :mon_open_from %><p>
+      <p><%= f.number_field :tues_open_from %><p>
+      <p><%= f.number_field :wed_open_from %><p>
+      <p><%= f.number_field :thurs_open_from %><p>
+      <p><%= f.number_field :fri_open_from %><p>
+      <p><%= f.number_field :sat_open_from %><p>
+      <p><%= f.number_field :sun_open_from %><p>
     </div>
-    <div class="open_until">
-      <%= f.label :open_until %>
-      <%= f.number_field :mon_open_until %>
-      <br/>
-      <%= f.label :open_until %>
-      <%= f.number_field :tues_open_until %>
-      <br/>
-      <%= f.label :open_until %>
-      <%= f.number_field :wed_open_until %>
-      <br/>
-      <%= f.label :open_until %>
-      <%= f.number_field :thurs_open_until %>
-      <br/>
-      <%= f.label :open_until %>
-      <%= f.number_field :fri_open_until %>
-      <br/>
-      <%= f.label :open_until %>
-      <%= f.number_field :sat_open_until %>
-      <br/>
-      <%= f.label :open_until %>
-      <%= f.number_field :sun_open_until %>
-    </div>
+    <div class="restaurant_hours_fields">
+      <p>Open until:</p>
+      <p><%= f.number_field :mon_open_until %><p>
+      <p><%= f.number_field :tues_open_until %><p>
+      <p><%= f.number_field :wed_open_until %><p>
+      <p><%= f.number_field :thurs_open_until %><p>
+      <p><%= f.number_field :fri_open_until %><p>
+      <p><%= f.number_field :sat_open_until %><p>
+      <p><%= f.number_field :sun_open_until %><p>
     </div>
 <%= f.submit 'submit', :class => 'submit' %>
 <% end %>

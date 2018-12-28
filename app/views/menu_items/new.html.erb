@@ -1,14 +1,26 @@
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<p>New menu item:</p>
+<div class="card">
+  <span class="card_header">
+    <h2>
+      ~ Menu for
+      <%= link_to restaurant_path(@restaurant.id) do %>
+        <%=@restaurant.name%>
+      <% end %> ~
+    </h2>
+  </span>
+  <div class="menu">
   <ul>
-  <% @menu_items.each do |item| %>
-    <li>
-      <%= render './menu_items/menu_item', menu_item: item %>
-    </li>
-  <% end %>
-</ul>
-<div class="menu_item_card">
+    <% @menu_items.each do |item| %>
+      <li>
+        <%= render './menu_items/menu_item', menu_item: item %>
+      </li>
+    <% end %>
+  </ul>
+  </div>
+</div>
+<div class="card menu_item_card">
+  <p>New menu item:</p>
   <%= render 'menu_item_form', menu_item: @menu_item, restaurant: @restaurant %>
 </div>

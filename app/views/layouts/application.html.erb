@@ -7,20 +7,46 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
       <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Aleo" rel="stylesheet">
 </head>
 <body>
+
   <header>
-    <div class="branding"><%= link_to restaurants_path do %><span class="logo"><img src="/assets/plate-fork-and-knife.svg" class="svg"></span>
-    <h1>Seat Yourself</h1>
-    <% end %>
+  
+    <div class="branding">
+      <%= link_to restaurants_path do %>
+        <span class="logo">
+          <%=image_tag('plate-fork-and-knife', class: "logo_svg") %>
+        </span>
+        <h1 class="logo-text">Seat Yourself</h1>
+      <% end %>
     </div>
 
-
-
     <nav class="nav">
-      <% if current_user %> Hello, <%=current_user.name%> | <%=link_to 'Profile', users_path %> | <%= link_to "Log out", sessions_path('0'), :method => :delete %>
-      <%else%> <%=link_to 'Log in', new_sessions_path %> | <%= link_to "Sign up", new_user_path%> <%end%>
+
+      <% if current_user %>
+        Hello, <%=current_user.name%> |
+        <div class="branding">
+          <%= link_to users_path do %>
+            <%=image_tag('user', class: "user_icon") %>
+            Profile
+          <% end %> 
+        </div> | 
+        <div class="branding">
+          <%= link_to sessions_path('0'), :method => :delete do %>
+            <%=image_tag('logout', class: "user_icon") %>
+            Log out
+          <% end %>
+      <%else%>
+          <%= link_to new_sessions_path do %>
+            <%=image_tag('user', class: "user_icon") %>
+            Log in
+          <% end %> 
+        <%=image_tag('new-user', class: "user_icon") %>
+        <%= link_to "Sign up", new_user_path%>
+      <%end%>
     </nav>
+
   </header>
 
   <main>

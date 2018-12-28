@@ -1,8 +1,15 @@
-<p>Date: <%= Date::DAYNAMES[reservation.date.wday] %>,  <%= reservation.date.strftime("%B %d, %Y") %></p>
-<p>Time: <%= reservation.time %></p>
-<p>Party Size: <%= reservation.party_size %></p>
-<p>
 <%= link_to restaurant_path((reservation.restaurant_id)) do %>
     <%= @all_restaurants.find(reservation.restaurant_id).name %>
   <% end %>
+  <%= link_to restaurant_path(reservation.restaurant.id) do %>
+  <span class="link_button details_button">
+    <%=image_tag('magnifier', class: "svg") %>
+    Details
+  </span>
+<%end%>
+<p><span class="label">Date:</span> <%= Date::DAYNAMES[reservation.date.wday] %>,  <%= reservation.date.strftime("%B %d, %Y") %></p>
+<p><span class="label">Time:</span> <%= reservation.time %></p>
+<p><span class="label">Party Size:</span> <%= reservation.party_size %></p>
+<p>
+
 </p>
