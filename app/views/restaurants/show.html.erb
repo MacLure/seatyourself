@@ -4,7 +4,7 @@
 
 <div class="card restaurant_details_card">
     <%= render 'restaurant', restaurant: @restaurant %>
-    <%if @restaurant.user_id == @user.id && @menu_items.length > 0 %>
+    <%if @user && @restaurant.user_id == @user.id && @menu_items.length > 0 %>
       <div class="menu">
       ~ Menu ~
       <ul>
